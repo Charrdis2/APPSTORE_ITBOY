@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT BOYS MOTORSHOP</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="authScreen" class="auth-screen">
+      <main class="auth-card">
+        <div class="brand-tag">IT BOYS MOTORSHOP</div>
+        <h1>Welcome Back</h1>
+        <p class="subtitle">Sign in to open the store.</p>
+
+        <form id="loginForm" class="auth-form">
+          <label>
+            Username
+            <input id="loginUsername" type="text" placeholder="Enter username" autocomplete="username" required />
+          </label>
+
+          <label>
+            Password
+            <input id="loginPassword" type="password" placeholder="Enter password" autocomplete="current-password" required />
+          </label>
+
+          <button type="submit" class="primary-btn">Login</button>
+        </form>
+
+        <div class="divider"><span>or</span></div>
+
+        <form id="signupForm" class="auth-form hidden">
+          <label>
+            New Username
+            <input id="signupUsername" type="text" placeholder="Create username" autocomplete="username" minlength="3" maxlength="24" required />
+          </label>
+
+          <label>
+            New Password
+            <input id="signupPassword" type="password" placeholder="Create password (at least 6 characters)" autocomplete="new-password" minlength="6" required />
+          </label>
+
+          <button type="submit" class="secondary-btn">Create Account</button>
+        </form>
+
+        <button id="toggleAuthMode" type="button" class="link-btn">
+          Create a new account
+        </button>
+
+        <div id="authMessage" class="auth-message" aria-live="polite"></div>
+        <div class="demo-box">
+          <strong>Demo login:</strong>
+          <span>ITBOYS / 12345</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="storeScreen" class="store-screen hidden">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Premium Parts & Gear</p>
+          <h2>IT BOYS MOTORSHOP</h2>
+        </div>
+
+        <div class="user-actions">
+          <span>Welcome, <strong id="welcomeUser">Rider</strong></span>
+          <button id="logoutBtn" class="ghost-btn">Logout</button>
+        </div>
+      </header>
+
+      <main class="content-area">
+        <section class="catalog-panel">
+          <div class="catalog-header">
+            <div>
+              <p class="section-kicker">Find your next ride essential</p>
+              <h3>Motorcycle & Bike Accessories</h3>
+            </div>
+            <div class="filter-group">
+              <button class="filter-btn active" data-category="all" aria-pressed="true" type="button">All</button>
+              <button class="filter-btn" data-category="motorcycle" aria-pressed="false" type="button">Motorcycle</button>
+              <button class="filter-btn" data-category="bike" aria-pressed="false" type="button">Bike</button>
+            </div>
+          </div>
+
+          <label class="search-box">
+            <span class="sr-only">Search products</span>
+            <span aria-hidden="true">⌕</span>
+            <input id="productSearch" type="search" placeholder="Search helmets, tools, accessories..." autocomplete="off" />
+          </label>
+          <p id="catalogStatus" class="catalog-status" aria-live="polite"></p>
+          <div id="productGrid" class="product-grid"></div>
+        </section>
+
+        <aside class="cart-panel">
+          <div class="cart-heading">
+            <h3>Your Cart</h3>
+            <span id="cartCount" class="cart-count" aria-label="0 items in cart">0</span>
+          </div>
+          <div id="cartItems" class="cart-items" aria-live="polite"></div>
+
+          <div class="summary-row">
+            <span>Total</span>
+            <strong id="cartTotal">₱0.00</strong>
+          </div>
+
+          <button id="checkoutBtn" class="primary-btn checkout-btn" type="button" disabled>
+            Checkout
+          </button>
+          <p class="cart-note">Orders are for in-store demo purposes.</p>
+        </aside>
+      </main>
+
+      <dialog id="checkoutDialog" class="checkout-dialog" aria-labelledby="checkoutTitle">
+        <div class="checkout-dialog-header">
+          <div>
+            <p class="section-kicker">Almost there</p>
+            <h2 id="checkoutTitle">Complete your order</h2>
+          </div>
+          <button id="closeCheckoutBtn" class="dialog-close" type="button" aria-label="Close checkout">×</button>
+        </div>
+
+        <form id="checkoutForm" class="checkout-form">
+          <p class="checkout-intro">Enter your contact details to reserve these items for in-store pickup.</p>
+
+          <label>
+            Full name
+            <input id="checkoutName" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required />
+          </label>
+          <label>
+            Mobile number
+            <input id="checkoutPhone" name="phone" type="tel" autocomplete="tel" inputmode="numeric" placeholder="09XXXXXXXXX" pattern="09[0-9]{9}" title="Enter an 11-digit Philippine mobile number starting with 09, without spaces." required />
+          </label>
+
+          <div class="checkout-method">
+            <span class="method-label">Pickup</span>
+            <strong>Pay at the shop</strong>
+            <span>No online payment will be collected.</span>
+          </div>
+
+          <div class="checkout-order">
+            <h3>Order summary</h3>
+            <div id="checkoutItems" class="checkout-items"></div>
+            <div class="summary-row">
+              <span>Total due at pickup</span>
+              <strong id="checkoutTotal">₱0.00</strong>
+            </div>
+          </div>
+          <p id="checkoutError" class="checkout-error" role="alert"></p>
+          <button id="placeOrderBtn" class="primary-btn checkout-submit" type="submit">Place pickup order</button>
+        </form>
+
+        <section id="checkoutSuccess" class="checkout-success hidden" aria-live="polite">
+          <div class="success-mark" aria-hidden="true">✓</div>
+          <h3>Order reserved!</h3>
+          <p id="orderConfirmation"></p>
+          <button id="finishCheckoutBtn" class="primary-btn checkout-submit" type="button">Continue shopping</button>
+        </section>
+      </dialog>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
